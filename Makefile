@@ -6,7 +6,7 @@
 #    By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 17:41:15 by astavrop          #+#    #+#              #
-#    Updated: 2024/03/08 23:13:19 by astavrop         ###   ########.fr        #
+#    Updated: 2024/03/08 23:18:21 by astavrop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,13 @@ CC					:= cc
 CFLAGS				:= -Wall -Werror -Wextra -g
 DEBUGFLAGS			:= -g
 LIBS				:=
-INCLUDES			:= -I.
+INCLUDES			:= -I. -Iinclude/
 NAME				:= hash_func
 
 
 CFILES				+= main.c					# Main
-CFILES				+= fnv_hash.c
+CFILES				+= funcs/fnv_hash.c			# Fowler–Noll–Vo hash function
+# CFILES				+= funcs/fnv_hash.c			# 
 
 
 OBJ_DIR				:= ./obj/
@@ -37,7 +38,7 @@ all: $(NAME)
 -include $(DEPS)
 
 
-$(OBJ_DIR)%.o: %.c
+$(OBJ_DIR)%.o: */%.c
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -MMD -MF $(patsubst %.o,%.d,$@) $(INCLUDES) -c $< -o $@
 
