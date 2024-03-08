@@ -6,7 +6,7 @@
 /*   By: tosuman <timo42@proton.me>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:33:37 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/08 23:29:28 by tosuman          ###   ########.fr       */
+/*   Updated: 2024/03/08 23:40:45 by tosuman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,42 +78,35 @@ char	*get_next_line(int fd)
 	return (x.prv[fd][x.j] = 0, x.buf[x.len + 1] = 0, x.len = 0, x.buf);
 }
 
-static uint64_t	hash(char *key)
+int	hash(char *key)
 {
-	uint64_t	hash;
-	const char	*p;
+	int	sum;
 
-	/* return (*key); */
-	hash = FNV_OFFSET;
-	p = key;
-	while (*p)
-	{
-		hash ^= (uint64_t)(unsigned char)(*p);
-		hash *= FNV_PRIME;
-		++p;
-	}
-	return (hash);
+	sum = 0;
+	while (*key)
+		sum += (int) *key++;
+	return (sum);
 }
 
-void	insert(t_kv hashtable[TABLE_SIZE], char *key, char *value)
+void	ht_set(t_kv ht[TABLE_SIZE], char *key, char *value)
 {
 	int		idx;
 	t_kv	*new_kv;
 
 	idx = hash(key) % TABLE_SIZE;
-	if (!hashtable[idx].k)
+	if (!ht[idx].k)
 	{
-		hashtable[idx].k = key;
-		hashtable[idx].v = value;
-		hashtable[idx].n = NULL;
+		ht[idx].k = key;
+		ht[idx].v = value;
+		ht[idx].n = NULL;
 	}
 	else
 	{
 		new_kv = malloc(sizeof(*new_kv));
 		new_kv->k = key;
 		new_kv->v = value;
-		new_kv->n = hashtable[idx].n;
-		hashtable[idx].n = new_kv;
+		new_kv->n = ht[idx].n;
+		ht[idx].n = new_kv;
 	}
 }
 
@@ -132,14 +125,14 @@ int	ft_strcmp(char const *s1, char const *s2)
 	return (*us1 - *us2);
 }
 
-char	*lookup(t_kv hashtable[TABLE_SIZE], char *key)
+char	*ht_get(t_kv ht[TABLE_SIZE], char *key)
 {
 	t_kv	*kv;
 
-	kv = &hashtable[hash(key) % TABLE_SIZE];
-	while (kv && ft_strcmp(kv->k, key))
+	kv = &ht[hash(key) % TABLE_SIZE];
+	while (kv && kv->k && ft_strcmp(kv->k, key))
 		kv = kv->n;
-	if (kv)
+	if (kv && kv->k)
 		return (kv->v);
 	return ("key not found\n");
 }
@@ -245,7 +238,7 @@ void	print_linked_list(t_kv kv_)
 	printf("\n");
 }
 
-void	print_hashtable(t_kv hashtable[TABLE_SIZE])
+void	ht_print(t_kv ht[TABLE_SIZE])
 {
 	int	i;
 
@@ -253,13 +246,13 @@ void	print_hashtable(t_kv hashtable[TABLE_SIZE])
 	while (++i < TABLE_SIZE)
 	{
 		printf("%d: ", i);
-		print_linked_list(hashtable[i]);
+		print_linked_list(ht[i]);
 	}
 }
 
 int	main(void)
 {
-	static t_kv	hashtable[TABLE_SIZE];
+	static t_kv	ht[TABLE_SIZE];
 	char		*key;
 	char		*value;
 
@@ -273,9 +266,9 @@ int	main(void)
 			free(value);
 			break ;
 		}
-		insert(hashtable, key, value);
+		ht_set(ht, key, value);
 	}
-	print_hashtable(hashtable);
-	printf("\n%s", lookup(hashtable, "He3sXbNAuSHCmlkv0Rfg\n"));
+	ht_print(ht);
+	printf("\n%s", ht_get(ht, "3lI73sJOlT6BZkGEOEr8\n"));
 	return (0);
 }
