@@ -6,7 +6,7 @@
 #    By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 17:41:15 by astavrop          #+#    #+#              #
-#    Updated: 2024/03/08 22:56:28 by astavrop         ###   ########.fr        #
+#    Updated: 2024/03/08 23:13:19 by astavrop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME				:= hash_func
 
 
 CFILES				+= main.c					# Main
-CFILES				+= fnv_1a_hash.c
+CFILES				+= fnv_hash.c
 
 
 OBJ_DIR				:= ./obj/
