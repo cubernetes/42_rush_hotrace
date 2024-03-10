@@ -34,4 +34,9 @@ uint64_t		fnv_1a_64(char *input_str);
 uint64_t		fasthash_64(char *input_str, size_t len, uint64_t seed);
 uint32_t		fasthash_32(char *input_str, size_t len, uint32_t seed);
 
+// ELF HASH
+
+uint32_t		elf_hash_32(char *input_str);
+uint32_t		elf_gnu_hash_32(char *input_str);
+
 #endif

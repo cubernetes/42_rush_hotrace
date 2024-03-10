@@ -21,6 +21,7 @@ NAME				:= hash_func
 CFILES				+= main.c					# Main
 CFILES				+= funcs/fnv_hash.c			# Fowler–Noll–Vo hash function
 CFILES				+= funcs/fasthash.c			#
+CFILES				+= funcs/elfhash.c			#
 
 
 OBJ_DIR				:= ./obj/

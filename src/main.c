@@ -28,7 +28,10 @@ int	main(int ac, char **av)
 		printf("32-bit Hash for `%s` = %u\n", inp, fasthash_32(inp,
 			strlen(inp), 42));
 		printf("64-bit Hash for `%s` = %lu\n", inp, fasthash_64(inp,
-	 		strlen(inp), 42));
+			strlen(inp), 42));
+		printf("\nELF Hash:\n");
+		printf("32-bit Hash for `%s` = %u\n", inp, elf_hash_32(inp));
+		printf("32-bit (GNU) Hash for `%s` = %u\n", inp, elf_gnu_hash_32(inp));
 	}
 	else
 		printf("Usage: %s <string to be hashed>\n", av[0]);
