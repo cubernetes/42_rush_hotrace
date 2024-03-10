@@ -6,7 +6,7 @@
 #    By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 17:41:15 by astavrop          #+#    #+#              #
-#    Updated: 2024/03/10 18:24:25 by astavrop         ###   ########.fr        #
+#    Updated: 2024/03/10 18:35:45 by astavrop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ endif
 CFILES				+= main.c					# Main
 CFILES				+= hash_funcs/fnv_hash.c	# Fowler–Noll–Vo hash function
 CFILES				+= hash_funcs/fasthash.c	#
+CFILES				+= hash_funcs/elfhash.c		# normal & gnu implementation
 CFILES				+= ht.c						# Hash table
 CFILES				+= utils.c					# ft_*
 
