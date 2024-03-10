@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosuman <timo42@proton.me>                 +#+  +:+       +#+        */
+/*   By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:47:15 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/10 18:08:32 by tosuman          ###   ########.fr       */
+/*   Updated: 2024/03/10 19:17:38 by astavrop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # endif
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 100
 # endif
 
 typedef struct s_gnl_vars
@@ -36,10 +36,11 @@ typedef struct s_gnl_vars
 
 int			ft_strcmp(char const *s1, char const *s2);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
-size_t		ft_strlen(char *s);
+size_t		ft_strlen(const char *s);
 char		*ft_strdup(char *s);
 int			ft_char_in_charset(char c, char const *charset);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*get_next_line(int fd);
+char		*ft_strtrim(char const *s1, char const *set);
 
 #endif /* utils.h. */

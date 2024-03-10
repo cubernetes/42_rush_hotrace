@@ -6,7 +6,7 @@
 /*   By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 22:53:45 by astavrop          #+#    #+#             */
-/*   Updated: 2024/03/10 18:00:17 by tosuman          ###   ########.fr       */
+/*   Updated: 2024/03/10 22:17:57 by astavrop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,69 @@
 #include "../include/ht.h"
 #include "../include/utils.h"
 #include <stdio.h> /* printf() */ /* TODO: remove printf() */
-#include <stdlib.h>               /* free() */
+#include <stdlib.h>
+#include <unistd.h>
 
-/* TODO: fix leaks */
-int	test_hash_table(int argc, char **argv)
+#define MISSING_VALUE_ERR "Missing value to a key"
+
+void	error(t_kv ht[TABLE_SIZE], const char *msg)
+{
+	printf("%s\n", msg);
+	close(0);
+	get_next_line(0);
+	ht_destroy(ht);
+	exit(EXIT_FAILURE);
+}
+
+int	populate_ht(t_kv ht[TABLE_SIZE])
+{
+	char		*key;
+	char		*value;
+
+	while (1)
+	{
+		key = get_next_line(0);
+		if (!key)
+		{
+			ht_destroy(ht);
+			return (0);
+		}
+		if (key[0] == '\n' && key[1] == '\0')
+			break ;
+		value = get_next_line(0);
+		if (!value)
+			(free(key), error(ht, MISSING_VALUE_ERR));
+		if (value[0] == '\n' && value[1] == '\0')
+			(free(key), free(value), error(ht, MISSING_VALUE_ERR));
+		ht_set(ht, key, value);
+	}
+	free(key);
+	return (1);
+}
+
+int	main(void)
 {
 	static t_kv	ht[TABLE_SIZE];
 	char		*key;
 	char		*value;
+	char		*tmp;
 
-	(void)argc;
-	(void)argv;
+	if (!populate_ht(ht))
+		return (0);
 	while (1)
 	{
 		key = get_next_line(0);
-		value = get_next_line(0);
-		if (!key || !value)
-		{
-			free(key);
-			free(value);
+		if (!key)
 			break ;
-		}
-		ht_set(ht, key, value);
+		value = ht_get(ht, key);
+		tmp = ft_strtrim(key, "\n");
+		free(key);
+		if (value == NULL)
+			printf("%s: Not found\n", tmp);
+		else
+			printf("%s", value);
+		free(tmp);
 	}
-	ht_print(ht);
-	printf("\n%s", ht_get(ht, "3lI73sJOlT6BZkGEOEr8\n"));
+	ht_destroy(ht);
 	return (0);
-}
-
-int	test_hash_funcs(int argc, char **argv)
-{
-	char	*inp;
-
-	if (argc == 2)
-	{
-		inp = argv[1];
-		printf("FNV:\n");
-		printf("32-bit Hash for `%s` = %u\n", inp, fnv_1a_32(inp));
-		printf("64-bit Hash for `%s` = %lu\n", inp, fnv_1a_64(inp));
-		printf("\nFasthash:\n");
-		printf("32-bit Hash for `%s` = %u\n", inp, fasthash_32(inp,
-				ft_strlen(inp), 42));
-		printf("64-bit Hash for `%s` = %lu\n", inp, fasthash_64(inp,
-				ft_strlen(inp), 42));
-	}
-	else
-		printf("Usage: %s <string to be hashed>\n", argv[0]);
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	return (test_hash_table(argc, argv));
-	/* return (test_hash_funcs(argc, argv)); */
 }

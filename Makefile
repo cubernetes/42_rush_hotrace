@@ -6,12 +6,12 @@
 #    By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 17:41:15 by astavrop          #+#    #+#              #
-#    Updated: 2024/03/10 18:35:45 by astavrop         ###   ########.fr        #
+#    Updated: 2024/03/10 22:46:12 by astavrop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC					:= cc
-CFLAGS				:= -Wall -Werror -Wextra -pedantic -Wconversion -std=c99 -O3
+CFLAGS				:= -Wall -Werror -Wextra -pedantic -Wconversion -O3
 LIBS				:=
 INCLUDES			:= -I. -Iinclude/
 NAME				:= hotrace
@@ -26,6 +26,7 @@ CFILES				+= hash_funcs/fasthash.c	#
 CFILES				+= hash_funcs/elfhash.c		# normal & gnu implementation
 CFILES				+= ht.c						# Hash table
 CFILES				+= utils.c					# ft_*
+CFILES				+= utils2.c					# ft_*
 
 OBJ_DIR				:= ./obj/
 OBJS				:= $(patsubst %.c, $(OBJ_DIR)%.o, $(CFILES))

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ht.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tosuman <timo42@proton.me>                 +#+  +:+       +#+        */
+/*   By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:49:42 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/10 17:36:07 by tosuman          ###   ########.fr       */
+/*   Updated: 2024/03/10 19:03:44 by astavrop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HT_H
 # define HT_H 1
 
-# define TABLE_SIZE 30
+# define TABLE_SIZE 100000
 
 typedef struct s_kv
 {
@@ -25,5 +25,6 @@ typedef struct s_kv
 void			ht_set(t_kv ht[TABLE_SIZE], char *key, char *value);
 char			*ht_get(t_kv ht[TABLE_SIZE], char *key);
 void			ht_print(t_kv ht[TABLE_SIZE]);
+void			ht_destroy(t_kv ht[TABLE_SIZE]);
 
 #endif /* ht.h. */
