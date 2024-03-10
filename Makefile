@@ -6,11 +6,11 @@
 #    By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/17 17:41:15 by astavrop          #+#    #+#              #
-#    Updated: 2024/03/10 18:13:43 by tosuman          ###   ########.fr        #
+#    Updated: 2024/03/10 18:24:25 by astavrop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC					:= gcc
+CC					:= cc
 CFLAGS				:= -Wall -Werror -Wextra -pedantic -Wconversion -std=c99 -O3
 LIBS				:=
 INCLUDES			:= -I. -Iinclude/
@@ -33,7 +33,6 @@ DEPS				:= $(OBJS:.o=.d)
 
 RM					:= /bin/rm -f
 MKDIR				:= /bin/mkdir -p
-
 
 all: $(NAME)
 
