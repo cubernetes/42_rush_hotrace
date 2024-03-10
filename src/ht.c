@@ -6,13 +6,14 @@
 /*   By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:33:37 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/10 18:43:21 by astavrop         ###   ########.fr       */
+/*   Updated: 2024/03/10 23:23:27 by astavrop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ht.h"
 #include "../include/hash_func.h"
 #include "../include/utils.h"
+#include "../include/gnl.h"
 #include <stdlib.h>
 #include <stdio.h> /* printf() */ /* TODO: remove printf() */
 

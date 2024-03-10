@@ -6,13 +6,14 @@
 /*   By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 22:53:45 by astavrop          #+#    #+#             */
-/*   Updated: 2024/03/10 22:17:57 by astavrop         ###   ########.fr       */
+/*   Updated: 2024/03/10 23:37:59 by astavrop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/hash_func.h"
 #include "../include/ht.h"
 #include "../include/utils.h"
+#include "../include/gnl.h"
 #include <stdio.h> /* printf() */ /* TODO: remove printf() */
 #include <stdlib.h>
 #include <unistd.h>
@@ -21,9 +22,16 @@
 
 void	error(t_kv ht[TABLE_SIZE], const char *msg)
 {
+	char	*line;
+
 	printf("%s\n", msg);
-	close(0);
-	get_next_line(0);
+	while (1)
+	{
+		line = get_next_line_stdin().str;
+		if (line == NULL)
+			break ;
+		free(line);
+	}
 	ht_destroy(ht);
 	exit(EXIT_FAILURE);
 }
@@ -35,19 +43,12 @@ int	populate_ht(t_kv ht[TABLE_SIZE])
 
 	while (1)
 	{
-		key = get_next_line(0);
+		key = get_next_line_stdin().str;
 		if (!key)
-		{
-			ht_destroy(ht);
-			return (0);
-		}
-		if (key[0] == '\n' && key[1] == '\0')
 			break ;
-		value = get_next_line(0);
+		value = get_next_line_stdin().str;
 		if (!value)
 			(free(key), error(ht, MISSING_VALUE_ERR));
-		if (value[0] == '\n' && value[1] == '\0')
-			(free(key), free(value), error(ht, MISSING_VALUE_ERR));
 		ht_set(ht, key, value);
 	}
 	free(key);
@@ -59,23 +60,20 @@ int	main(void)
 	static t_kv	ht[TABLE_SIZE];
 	char		*key;
 	char		*value;
-	char		*tmp;
 
 	if (!populate_ht(ht))
 		return (0);
 	while (1)
 	{
-		key = get_next_line(0);
+		key = get_next_line_stdin().str;
 		if (!key)
 			break ;
 		value = ht_get(ht, key);
-		tmp = ft_strtrim(key, "\n");
-		free(key);
 		if (value == NULL)
-			printf("%s: Not found\n", tmp);
+			printf("%s: Not found\n", key);
 		else
-			printf("%s", value);
-		free(tmp);
+			printf("%s\n", value);
+		free(key);
 	}
 	ht_destroy(ht);
 	return (0);
