@@ -20,7 +20,7 @@ NAME				:= hash_func
 
 CFILES				+= main.c					# Main
 CFILES				+= funcs/fnv_hash.c			# Fowler–Noll–Vo hash function
-# CFILES				+= funcs/fnv_hash.c			# 
+CFILES				+= funcs/fasthash.c			#
 
 
 OBJ_DIR				:= ./obj/
