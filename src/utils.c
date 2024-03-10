@@ -6,11 +6,11 @@
 /*   By: tosuman <timo42@proton.me>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:45:39 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/08 23:50:27 by tosuman          ###   ########.fr       */
+/*   Updated: 2024/03/10 17:24:35 by tosuman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../include/utils.h"
 #include <stdlib.h>
 #include <unistd.h>
 

@@ -6,12 +6,12 @@
 /*   By: tosuman <timo42@proton.me>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:33:37 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/08 23:52:10 by tosuman          ###   ########.fr       */
+/*   Updated: 2024/03/10 17:24:47 by tosuman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hash.h"
-#include "utils.h"
+#include "../include/hash.h"
+#include "../include/utils.h"
 
 #include <stdlib.h>
 #include <stdio.h>
