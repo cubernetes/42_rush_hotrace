@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   ht.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tosuman <timo42@proton.me>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:33:37 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/10 17:24:47 by tosuman          ###   ########.fr       */
+/*   Updated: 2024/03/10 17:38:02 by tosuman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/hash.h"
+#include "../include/ht.h"
 #include "../include/utils.h"
-
 #include <stdlib.h>
-#include <stdio.h>
+#include <stdio.h> /* printf() */ /* TODO: remove printf() */
 
 int	hash(char *key)
 {
@@ -90,28 +89,4 @@ void	ht_print(t_kv ht[TABLE_SIZE])
 		printf("%d: ", i);
 		print_linked_list(ht[i]);
 	}
-}
-
-/* TODO: fix leaks */
-int	main(void)
-{
-	static t_kv	ht[TABLE_SIZE];
-	char		*key;
-	char		*value;
-
-	while (1)
-	{
-		key = get_next_line(0);
-		value = get_next_line(0);
-		if (!key || !value)
-		{
-			free(key);
-			free(value);
-			break ;
-		}
-		ht_set(ht, key, value);
-	}
-	ht_print(ht);
-	printf("\n%s", ht_get(ht, "3lI73sJOlT6BZkGEOEr8\n"));
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 14:01:50 by astavrop          #+#    #+#             */
-/*   Updated: 2024/03/10 15:30:09 by astavrop         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:05:33 by tosuman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ uint32_t	fasthash_32(char *input_str, size_t len, uint32_t seed)
 	uint64_t	hash;
 
 	hash = fasthash_64(input_str, len, seed);
-	return (hash - (hash >> 32));
+	return ((uint32_t)(hash - (hash >> 32)));
 }

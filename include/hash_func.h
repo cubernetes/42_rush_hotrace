@@ -6,7 +6,7 @@
 /*   By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 22:11:19 by astavrop          #+#    #+#             */
-/*   Updated: 2024/03/08 22:54:10 by astavrop         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:59:58 by tosuman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdint.h>
 # include <stddef.h>
 
-// FNV
+/* FNV */
 
 # define OFFSET_BASIS_32  2166136261
 # define OFFSET_BASIS_64  14695981039346656037UL
@@ -27,7 +27,7 @@
 uint32_t		fnv_1a_32(char *input_str);
 uint64_t		fnv_1a_64(char *input_str);
 
-// FASTHASH
+/* FASTHASH */
 
 # define M 0x880355f21e6d1965ULL
 

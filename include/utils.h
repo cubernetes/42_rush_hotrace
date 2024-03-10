@@ -6,7 +6,7 @@
 /*   By: tosuman <timo42@proton.me>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:47:15 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/08 23:51:14 by tosuman          ###   ########.fr       */
+/*   Updated: 2024/03/10 18:08:32 by tosuman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 #  define BUFFER_SIZE 42
 # endif
 
-typedef struct s_all
+typedef struct s_gnl_vars
 {
 	char	*prv[OPEN_MAX];
 	char	*buf;
-	ssize_t	bread;
+	ssize_t	b;
 	int		i;
 	int		j;
 	int		len;
