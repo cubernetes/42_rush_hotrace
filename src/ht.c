@@ -6,7 +6,7 @@
 /*   By: astavrop <astavrop@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:33:37 by tosuman           #+#    #+#             */
-/*   Updated: 2024/03/10 23:23:27 by astavrop         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:09:03 by astavrop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,18 @@
 #include <stdlib.h>
 #include <stdio.h> /* printf() */ /* TODO: remove printf() */
 
+/* Benchmarks
+ * input                     | elf_gnu_hash_32 | fnv_1a_32   | fasthash_32 |
+ * (kv: 1000000, sq: 500000) | 1.096           | 1.259       | 1.176       |
+ * (kv: 1000000, sq: 1000000)| 2.029           | 2.108       | 2.112       |
+ * --------------------------|-----------------|-------------|-------------|
+ * input                     | elf_hash_32     | fasthash_64 | fnv_1a_64   |
+ * (kv: 1000000, sq: 500000) | 1.132           | 1.166       | 1.258       |
+ * (kv: 1000000, sq: 1000000)| 1.881           | 2.039       | 2.334       |
+ */
 uint64_t	hash(char *key)
 {
-	return (fnv_1a_64(key));
+	return (elf_hash_32(key));
 }
 
 void	ht_set(t_kv ht[TABLE_SIZE], char *key, char *value)
